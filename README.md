@@ -45,3 +45,7 @@ En la carpeta `presentation` creamos una nueva carpeta llamada `blocs`.
 Dentro de la carpeta `blocs` creamos la carpeta `01-simple_cubit` y dentro el archivo `username_cubit.dart`.
 
 Dentro de la carpeta `blocs` creamos el archivo de barril `blocs.dart`.
+
+### BlocProvider
+
+En `main.dart` proporcionamos la instancia de nuestro Cubit a nivel global (si no lo queremos a nivel global podemos crear la instancia en un widget concreto) Para ello hemos creado el Stateless Widget `BlocsProviders` que es una clase.
