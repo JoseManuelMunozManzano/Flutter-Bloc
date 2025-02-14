@@ -2,6 +2,10 @@
 
 Curso de DevTalles sobre el gestor de estados Flutter BLoC.
 
+BLoC significa Business Logic Component y es un gestor de estados y se codifica en la carpeta de `presentation`.
+
+Conecta la capa de presentación (widgets) con las diferentes capas de nuestra aplicación.
+
 ## Para empezar
 
 Revisar Geolocator plugin, en caso de tener cambios en la instalación:
@@ -31,3 +35,13 @@ flutter pub add equatable
 
 flutter pub add get_it
 ```
+
+## Cubit Simple
+
+Un Cubit es una versión simplificada de un Bloc. Son Blocs.
+
+En la carpeta `presentation` creamos una nueva carpeta llamada `blocs`.
+
+Dentro de la carpeta `blocs` creamos la carpeta `01-simple_cubit` y dentro el archivo `username_cubit.dart`.
+
+Dentro de la carpeta `blocs` creamos el archivo de barril `blocs.dart`.
