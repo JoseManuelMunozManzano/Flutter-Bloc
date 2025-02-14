@@ -49,3 +49,7 @@ Dentro de la carpeta `blocs` creamos el archivo de barril `blocs.dart`.
 ### BlocProvider
 
 En `main.dart` proporcionamos la instancia de nuestro Cubit a nivel global (si no lo queremos a nivel global podemos crear la instancia en un widget concreto) Para ello hemos creado el Stateless Widget `BlocsProviders` que es una clase.
+
+### Consumir y cambiar el estado del cubit
+
+Modificamos el fuente `./screens/01_simple_cubit/cubit_screen.dart`.

@@ -13,4 +13,15 @@ import 'package:bloc/bloc.dart';
 
 class UsernameCubit extends Cubit<String> {
   UsernameCubit() : super('no-username');
+
+  // Lo que buscamos con nuestros blocs es que la lógica que usamos para llamar a métodos resida en
+  // nuestro gestor de estado.
+  // Técnicamente, nuestro gestor de estados solo debería llamar repositorios que están conectados a
+  // datasources.
+  //
+  // En este método emitimos un nuevo estado, que notificará a todos los Widgets que están pendientes
+  // (watch) de este Cubit que el valor ha cambiado, y esos Widgets se redibujarán.
+  void setUsername(String username) {
+    emit(username);
+  }
 }
