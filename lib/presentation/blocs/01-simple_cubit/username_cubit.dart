@@ -12,7 +12,13 @@ import 'package:bloc/bloc.dart';
 // Esto se hace en main.dart
 
 class UsernameCubit extends Cubit<String> {
-  UsernameCubit() : super('no-username');
+
+  // Por defecto, la inicialización es perezosa.
+  // Solo cuando se usa (no cuando se crea en main.dart) en cubit_screen.dart es cuando realmente
+  // se llama a este constructor.
+  UsernameCubit() : super('no-username') {
+    print('UsernameCubit Constructor called');
+  }
 
   // Lo que buscamos con nuestros blocs es que la lógica que usamos para llamar a métodos resida en
   // nuestro gestor de estado.

@@ -16,7 +16,12 @@ class BlocsProviders extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         // Creamos la instancia de UsernameCubit
-        BlocProvider(create: (context) => UsernameCubit())
+        //
+        // Por defecto la llamada al constructor es perezosa.
+        // Se llama al constructor cuando se usa, no aquí.
+        // Quitamos la construcción perezosa si necesitamos que vaya cargando datos...
+        // usando lazy: false
+        BlocProvider(create: (context) => UsernameCubit(), lazy: false,)
     ], child: const MyApp());
   }
 }

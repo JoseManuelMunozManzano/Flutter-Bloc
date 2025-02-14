@@ -53,3 +53,11 @@ En `main.dart` proporcionamos la instancia de nuestro Cubit a nivel global (si n
 ### Consumir y cambiar el estado del cubit
 
 Modificamos el fuente `./screens/01_simple_cubit/cubit_screen.dart`.
+
+### BlocBuilder
+
+En `main.dart` cambiamos la construcción perezosa por una que llama al constructor en cuanto se crea la instancia.
+
+Hemos hecho una copia `cubit_screen_copy.dart` y cambiamos en `cubit_screen.dart` de `context.watch()` a `BlocBuilder`.
+
+BlocBuilder es más eficiente, pero hay que escribir más código.
