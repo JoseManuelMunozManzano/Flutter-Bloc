@@ -13,15 +13,15 @@ class BlocsProviders extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        // Creamos la instancia de UsernameCubit
-        //
-        // Por defecto la llamada al constructor es perezosa.
-        // Se llama al constructor cuando se usa, no aquí.
-        // Quitamos la construcción perezosa si necesitamos que vaya cargando datos...
-        // usando lazy: false
-        BlocProvider(create: (context) => UsernameCubit(), lazy: false,)
+    return MultiBlocProvider(providers: [
+      // Creamos la instancia de UsernameCubit
+      //
+      // Por defecto la llamada al constructor es perezosa.
+      // Se llama al constructor cuando se usa, no aquí.
+      // Quitamos la construcción perezosa si necesitamos que vaya cargando datos...
+      // usando lazy: false
+      BlocProvider(create: (context) => UsernameCubit(), lazy: false),
+      BlocProvider(create: (context) => RouterSimpleCubit()),
     ], child: const MyApp());
   }
 }
@@ -31,12 +31,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appRouter = context.watch<RouterSimpleCubit>().state;
 
     return MaterialApp.router(
       title: 'Flutter BLoC',
       debugShowCheckedModeBanner: false,
       routerConfig: appRouter,
-      theme: AppTheme( isDarkmode: false ).getTheme(),
+      theme: AppTheme(isDarkmode: false).getTheme(),
     );
   }
 }

@@ -61,3 +61,11 @@ En `main.dart` cambiamos la construcción perezosa por una que llama al construc
 Hemos hecho una copia `cubit_screen_copy.dart` y cambiamos en `cubit_screen.dart` de `context.watch()` a `BlocBuilder`.
 
 BlocBuilder es más eficiente, pero hay que escribir más código.
+
+## Cubit + Go_Router - Estado Complejo del cubit
+
+Vamos a `./lib/config/router/app_router.dart`. Ahí están las rutas de la aplicación. Quiero meterlo todo dentro de un Cubit para poder redibujarlo, cambiarlo... Modificamos ese fuente para crear una clase `RouterSimpleCubit`.
+
+Modificamos `main.dart` porque estaba fallando. Tenemos que proveer nuestro nuevo Cubit `RouterSimpleCubit` y se añade `final appRouter = context.watch<RouterSimpleCubit>().state;` para coger el appRouter de nuestro context.
+
+Modificamos `./screens/02_cubit_router/router_screen.dart` para, usando nuestro Cubit, al pulsar el botón vaya atrás (llame a goBack()).
