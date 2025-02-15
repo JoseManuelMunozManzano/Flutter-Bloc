@@ -69,3 +69,15 @@ Vamos a `./lib/config/router/app_router.dart`. Ahí están las rutas de la aplic
 Modificamos `main.dart` porque estaba fallando. Tenemos que proveer nuestro nuevo Cubit `RouterSimpleCubit` y se añade `final appRouter = context.watch<RouterSimpleCubit>().state;` para coger el appRouter de nuestro context.
 
 Modificamos `./screens/02_cubit_router/router_screen.dart` para, usando nuestro Cubit, al pulsar el botón vaya atrás (llame a goBack()).
+
+## Counter Cubit
+
+Vamos a modificar `./screens/03_multiple_cubits/multiple_cubits_screen.dart` para que, al pulsar el botón aumente el contador.
+
+Para ello creamos un nuevo Cubit. En la carpeta `blocs` creamos la carpeta `02-counter` y dentro el archivo `counter_cubit.dart`.
+
+Lo exportamos en nuestro archivo de barril `blocs.dart`.
+
+Modificamos `main.dart` para proporcionar el nuevo Cubit en nuestros providers.
+
+Ahora si, ya podemos modificar `./screens/03_multiple_cubits/multiple_cubits_screen.dart`.

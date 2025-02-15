@@ -22,6 +22,7 @@ class BlocsProviders extends StatelessWidget {
       // usando lazy: false
       BlocProvider(create: (context) => UsernameCubit(), lazy: false),
       BlocProvider(create: (context) => RouterSimpleCubit()),
+      BlocProvider(create: (context) => CounterCubit()),
     ], child: const MyApp());
   }
 }
