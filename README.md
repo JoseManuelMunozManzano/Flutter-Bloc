@@ -78,6 +78,38 @@ Para ello creamos un nuevo Cubit. En la carpeta `blocs` creamos la carpeta `02-c
 
 Lo exportamos en nuestro archivo de barril `blocs.dart`.
 
-Modificamos `main.dart` para proporcionar el nuevo Cubit en nuestros providers.
+Modificamos `main.dart` para proveer el nuevo Cubit en nuestros providers.
 
 Ahora si, ya podemos modificar `./screens/03_multiple_cubits/multiple_cubits_screen.dart`.
+
+### ThemeCubit - Cubit + State
+
+El cambio del theme se puede hacer igual que hemos hecho el Cubit del contador.
+
+Pero vamos a introducir el segundo archivo que tienen los BLoC, que es el estado (el primero es el BLoC, el segundo es el estado y por último están los eventos)
+
+A partir de ahora, además, vamos a crear los Cubit con el generador que se instaló para VSCode (extensión Clob).
+
+En la carpeta `blocs` hacemos click con el botón derecho del ratón. Del desplegable seleccionamos `Bloc: New Cubit`.
+
+Nos va a pedir un nombre, le indicamos `theme` y pulsamos Intro.
+
+Veremos que nos crea una carpeta `cubit` y dentro crea dos archivos, `theme_cubit.dart` y `theme_state.dart`.
+
+Renombramos la carpeta `cubit` a `03-theme`.
+
+Como detecta que hemos instalado el paquete `equatable`, en `theme_state.dart` nos hace automáticamente la configuración que necesitamos para usarlo.
+
+Exportamos nuestro Cubit (el state no) en nuestro archivo de barril `blocs.dart`.
+
+Modificamos `main.dart` para proveer el nuevo Cubit en nuestros providers.
+
+Usaremos este Cubit en `./screens/03_multiple_cubits/multiple_cubits_screen.dart`.
+
+Volvemos a modificar `main.dart` para que el cambio del theme sea de manera global.
+
+### UsernameCubit
+
+Volvemos a modificar `./screens/03_multiple_cubits/multiple_cubits_screen.dart` para que, al pulsar el botón `Nombre aleatorio` se use `UsernameCubit`.
+
+Como es el mismo Cubit que usamos en `cubit_screen.dart`, se cambia el nombre en los dos sitios.
