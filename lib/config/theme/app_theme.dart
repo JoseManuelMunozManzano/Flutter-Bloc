@@ -20,6 +20,14 @@ class AppTheme {
     listTileTheme: const ListTileThemeData(
       iconColor: seedColor,
     ),
+
+    segmentedButtonTheme: SegmentedButtonThemeData(
+      style: ButtonStyle(
+        textStyle: WidgetStateProperty.all(
+          const TextStyle(fontSize: 12)
+        )
+      )
+    ),
     
   );
 

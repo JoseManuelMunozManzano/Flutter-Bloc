@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:blocs_app/presentation/blocs/blocs.dart';
 
 class GuestsScreen extends StatelessWidget {
   const GuestsScreen({super.key});
@@ -12,19 +14,22 @@ class GuestsScreen extends StatelessWidget {
       ),
       body: const _TodoView(),
       floatingActionButton: FloatingActionButton(
-        child: const Icon( Icons.add ),
+        child: const Icon(Icons.add),
         onPressed: () {},
       ),
     );
   }
 }
 
-
 class _TodoView extends StatelessWidget {
   const _TodoView();
 
   @override
   Widget build(BuildContext context) {
+    // Instancia de GuestsBloc
+    final guestBloc = context.watch<GuestsBloc>();
+    final selectedFilter = guestBloc.state.filter;
+
     return Column(
       children: [
         const ListTile(
@@ -33,27 +38,27 @@ class _TodoView extends StatelessWidget {
         ),
 
         SegmentedButton(
-          segments: const[
-            ButtonSegment(value: 'all', icon: Text('Todos')),
-            ButtonSegment(value: 'completed', icon: Text('Invitados')),
-            ButtonSegment(value: 'pending', icon: Text('No invitados')),
-          ], 
-          selected: const <String>{ 'all' },
+          segments: const [
+            ButtonSegment(value: GuestFilter.all, icon: Text('Todos')),
+            ButtonSegment(value: GuestFilter.invited, icon: Text('Invitados')),
+            ButtonSegment(value: GuestFilter.noInvited, icon: Text('No invitados')),
+          ],
+          selected: <GuestFilter>{selectedFilter},
           onSelectionChanged: (value) {
-            
+            // Aquí despachamos el evento
+            guestBloc.changeFilter(value.first);
           },
         ),
-        const SizedBox( height: 5 ),
+        const SizedBox(height: 5),
 
         /// Listado de personas a invitar
         Expanded(
           child: ListView.builder(
             itemBuilder: (context, index) {
               return SwitchListTile(
-                title: const Text('Juan carlos'),
-                value: true, 
-                onChanged: ( value ) {}
-              );
+                  title: const Text('Juan carlos'),
+                  value: true,
+                  onChanged: (value) {});
             },
           ),
         )

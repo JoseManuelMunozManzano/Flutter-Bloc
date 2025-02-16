@@ -162,8 +162,15 @@ En `guests_bloc.dart` vamos a interpretar esos eventos, lo que tiene que pasar c
 
 En `guests_state.dart` nos creamos un método `copyWith()` que nos devuelva una nueva instancia del estado.
 
+### Reaccionar visualmente al nuevo estado
+
+Modificamos `screens/04-guest/guests_screen.dart` para que acabe llamando al método `changeFilter(GuestFilter newFilter)`.
+
 Funcionamiento:
 
-- Desde un Widget se llamará a `guests_bloc.dart`, método `changeFilter(GuestFilter newFilter)` y se le pasa el filtro deseado. Esto despacha el evento
-- Basado en el switch del método `changeFilter(GuestFilter newFilter)` se añade, usando el método `add()` el evento asociado a ese filtro. Los eventos posibles están declarados en `guests_event.dart`
+- En el widget `guests_screen.dart` el valor del estado actual lo obtenemos como hacíamos con los Cubit
+  - `final guestBloc = context.watch<GuestsBloc>();`
+- Desde ese widget se llamará a `guests_bloc.dart`, método `changeFilter(GuestFilter newFilter)` y se le pasa el filtro deseado. Esto despacha el evento
+- En el método `changeFilter(GuestFilter newFilter)` se añade, usando el método `add()` el evento asociado a ese filtro. Los eventos posibles están declarados en `guests_event.dart`
 - Basado en el método `add()` se ejecuta en `guests_bloc.dart` el método handler `on()` correspondiente, que acaba ejecutando el método `emit()` que emite el nuevo estado, es decir, llama al método `copyWith()` de `guests_state.dart`
+- Al cambiar el estado el widget se redibuja y muestra la nueva información basada en ese nuevo estado
