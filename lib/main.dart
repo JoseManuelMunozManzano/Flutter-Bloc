@@ -19,12 +19,13 @@ class BlocsProviders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(providers: [
-      // Aquí decimos: ve a getIt (nuestro Service Locator) a buscar estas intancias.
+      // Aquí decimos: ve a getIt (nuestro Service Locator) a buscar estas instancias.
       // Ver main_copy.dart para explicaciones de este código.
       BlocProvider(create: (context) => getIt<UsernameCubit>()),
       BlocProvider(create: (context) => getIt<RouterSimpleCubit>()),
       BlocProvider(create: (context) => getIt<CounterCubit>()),
       BlocProvider(create: (context) => getIt<ThemeCubit>()),
+      BlocProvider(create: (context) => getIt<GuestsBloc>()),
     ], child: const MyApp());
   }
 }

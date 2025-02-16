@@ -13,6 +13,8 @@ void serviceLocatorInit() {
   getIt.registerSingleton(CounterCubit());
   getIt.registerSingleton(ThemeCubit());
 
+  getIt.registerSingleton(GuestsBloc());
+
   // ¿Para qué vale esto?
   // Imaginemos que necesitamos pasar a TheneCubit el valor del estado de UsernameCubit
   // Lo haríamos en el método así:

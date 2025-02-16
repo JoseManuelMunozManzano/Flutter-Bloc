@@ -124,4 +124,28 @@ En la carpeta `blocs` creamos el archivo `service_locator.dart`.
 
 He hecho una copia de `main.dart`, a la que llamo `main_copy.dart`.
 
-En `main.dart` llamamos a nuestro Service Locator.
+En `main.dart` llamamos a nuestro Service Locator y vamos a obtener las instancias que nos ha creado.
+
+## GuestBloc - Estado complejo
+
+Ahora si que vamos a usar BLoC en toda su complejidad, es decir (BLoC, estado y eventos).
+
+En VSCode, nos posicionamos en la carpeta `blocs`, pulsamos el botón derecho del ratón y seleccionamos `Bloc: New Bloc` y le damos el nombre `guests`.
+
+Nos crea la carpeta `blocs`, que renombramos a `04-guests`.
+
+Vemos que también nos ha creado los siguientes archivos:
+
+- guests_bloc.dart
+- guests_state.dart: es lo mismo que hemos estado viendo con los estados de los Cubit
+- guests_event.dart: son formas estandarizadas en las que cambiamos el estado. En vez de cambiar el estado en el Cubit directamente, generamos un evento que va a ser recibido por el archivo guests_bloc, y este, basado en el nuevo evento, genera un nuevo estado
+
+Por tanto, el orden sería: evento, bloc, estado. Se genera un evento que recibe el bloc y este emite un nuevo estado.
+
+Se pueden disparar los eventos desde cualquier lado, pero en lo personal prefiero que sea el bloc quien administre esos eventos.
+
+Vamos al archivo `service_locator.dart` y creamos la instancia de nuestro `GuestsBloc`.
+
+En `main.dart` ponemos a disposición de nuestros Widgets la instancia creada de `GuestsBloc`.
+
+Ya solo queda interactuar con `GuestsBloc` para construir la funcionalidad deseada.
