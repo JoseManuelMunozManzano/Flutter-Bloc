@@ -113,3 +113,15 @@ Volvemos a modificar `main.dart` para que el cambio del theme sea de manera glob
 Volvemos a modificar `./screens/03_multiple_cubits/multiple_cubits_screen.dart` para que, al pulsar el botón `Nombre aleatorio` se use `UsernameCubit`.
 
 Como es el mismo Cubit que usamos en `cubit_screen.dart`, se cambia el nombre en los dos sitios.
+
+## Service Locator - Get_it
+
+Vamos a usar aquí `Get_it`, un Service Locator, que es como un container de servicios y, cuando/donde lo necesito, pido la dependencia (una instancia) y la obtengo.
+
+Cuando usamos `context.watch<CounterCubit>();` estamos usando básicamente un Service Locator, ya que decimos al context que busque la instancia de, en este caso, un CounterCubit y nos la traiga.
+
+En la carpeta `blocs` creamos el archivo `service_locator.dart`.
+
+He hecho una copia de `main.dart`, a la que llamo `main_copy.dart`.
+
+En `main.dart` llamamos a nuestro Service Locator.

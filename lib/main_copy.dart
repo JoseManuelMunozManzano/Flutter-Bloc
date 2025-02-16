@@ -5,11 +5,6 @@ import 'package:blocs_app/config/config.dart';
 import 'package:blocs_app/presentation/blocs/blocs.dart';
 
 void main() {
-  // Llamamos a nuestro Service Locator.
-  // Si tuviésemos inicializaciones asíncronas, podríamos hacer
-  // void main() async {await serviceLocatorInit(); ...}
-  serviceLocatorInit();
-
   runApp(const BlocsProviders());
 }
 
@@ -19,12 +14,16 @@ class BlocsProviders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(providers: [
-      // Aquí decimos: ve a getIt (nuestro Service Locator) a buscar estas intancias.
-      // Ver main_copy.dart para explicaciones de este código.
-      BlocProvider(create: (context) => getIt<UsernameCubit>()),
-      BlocProvider(create: (context) => getIt<RouterSimpleCubit>()),
-      BlocProvider(create: (context) => getIt<CounterCubit>()),
-      BlocProvider(create: (context) => getIt<ThemeCubit>()),
+      // Creamos la instancia de UsernameCubit
+      //
+      // Por defecto la llamada al constructor es perezosa.
+      // Se llama al constructor cuando se usa, no aquí.
+      // Quitamos la construcción perezosa si necesitamos que vaya cargando datos...
+      // usando lazy: false
+      BlocProvider(create: (context) => UsernameCubit(), lazy: false),
+      BlocProvider(create: (context) => RouterSimpleCubit()),
+      BlocProvider(create: (context) => CounterCubit()),
+      BlocProvider(create: (context) => ThemeCubit()),
     ], child: const MyApp());
   }
 }
