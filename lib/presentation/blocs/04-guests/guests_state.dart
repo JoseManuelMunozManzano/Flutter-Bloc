@@ -16,6 +16,17 @@ class GuestsState extends Equatable {
     this.guests = const[],
   });
 
+  // Devuelve una nueva instancia de mi estado.
+  GuestsState copyWith({
+    GuestFilter? filter,
+    List<Todo>? guests,
+  }) {
+    return GuestsState(
+      filter: filter ?? this.filter,
+      guests: guests ?? this.guests,
+    );
+  }
+
   // Estas son las condiciones en las que quiero que el estado sea considerado como cambiado.
   @override
   List<Object> get props => [filter, guests];

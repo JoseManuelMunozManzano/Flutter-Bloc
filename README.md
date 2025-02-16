@@ -142,7 +142,7 @@ Vemos que también nos ha creado los siguientes archivos:
 
 Por tanto, el orden sería: evento, bloc, estado. Se genera un evento que recibe el bloc y este emite un nuevo estado.
 
-Se pueden disparar los eventos desde cualquier lado, pero en lo personal prefiero que sea el bloc quien administre esos eventos.
+Se pueden disparar (despachar) los eventos desde cualquier lado, pero en lo personal prefiero que sea el bloc quien administre esos eventos.
 
 Vamos al archivo `service_locator.dart` y creamos la instancia de nuestro `GuestsBloc`.
 
@@ -155,3 +155,15 @@ Ya solo queda interactuar con `GuestsBloc` para construir la funcionalidad desea
 Vamos a crear eventos que puedan ser disparados y acaben cambiando el estado.
 
 Creamos cuatro eventos en nuestro archivo `guests_event.dart`. 
+
+### Emitir nuevo estado basado en eventos
+
+En `guests_bloc.dart` vamos a interpretar esos eventos, lo que tiene que pasar cuando se recibe ese evento (como cambia el estado).
+
+En `guests_state.dart` nos creamos un método `copyWith()` que nos devuelva una nueva instancia del estado.
+
+Funcionamiento:
+
+- Desde un Widget se llamará a `guests_bloc.dart`, método `changeFilter(GuestFilter newFilter)` y se le pasa el filtro deseado. Esto despacha el evento
+- Basado en el switch del método `changeFilter(GuestFilter newFilter)` se añade, usando el método `add()` el evento asociado a ese filtro. Los eventos posibles están declarados en `guests_event.dart`
+- Basado en el método `add()` se ejecuta en `guests_bloc.dart` el método handler `on()` correspondiente, que acaba ejecutando el método `emit()` que emite el nuevo estado, es decir, llama al método `copyWith()` de `guests_state.dart`
