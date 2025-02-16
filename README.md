@@ -149,3 +149,9 @@ Vamos al archivo `service_locator.dart` y creamos la instancia de nuestro `Guest
 En `main.dart` ponemos a disposición de nuestros Widgets la instancia creada de `GuestsBloc`.
 
 Ya solo queda interactuar con `GuestsBloc` para construir la funcionalidad deseada.
+
+### Bloc Events - Relacionado al filtro
+
+Vamos a crear eventos que puedan ser disparados y acaben cambiando el estado.
+
+Creamos cuatro eventos en nuestro archivo `guests_event.dart`. 

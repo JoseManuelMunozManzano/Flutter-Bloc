@@ -11,8 +11,8 @@ class GuestsBloc extends Bloc<GuestsEvent, GuestsState> {
 
   GuestsBloc() : super(const GuestsState()) {
 
-    // Este on es el que va a estar escuchando eventos.
-    // Lo configuramos más tarde.
+    // Este on es el que va a estar escuchando eventos y decidiendo que
+    // se tiene que hacer cuando llega uno.
     // on<GuestsEvent>((event, emit) {
     //   // TODO: implement event handler
     // });
