@@ -196,3 +196,11 @@ Maneras de optimizar esta implementación:
 - En la función `addGuest()` podríamos recibir todo el objeto Todo en vez de solo el nombre
   - Esto podría tener un problema, que en la función `on` tengamos que tener lógica, cosa que se ve fea
   - SOLUCION: delegar toda la lógica del `on` en un nuevo método, lo que deja el `on` muy limpio
+
+### Cambiar el estado de un invitado
+
+Para cambiar el estado de un invitado:
+
+- `guests_event.dart`: creamos un nuevo evento que recibe el id del invitado que quiero cambiar
+- `guests_bloc.dart`: creamos un handler para estar escuchando el nuevo evento creado, una función (`_toggleGuestHandler()`) que es el código delegado por el `on` y otra función (`addGuest()`) para despachar el evento
+- `guests_screen.dart`: Llamamos a la función que despacha el evento en el onChanged del SwitchListTile

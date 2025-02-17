@@ -12,18 +12,33 @@ const uuid = Uuid();
 
 // El bloc amarra aquí las dos piezas (GuestsEvent y GuestsState)
 class GuestsBloc extends Bloc<GuestsEvent, GuestsState> {
-  GuestsBloc() : super(GuestsState(
+  GuestsBloc()
+      : super(GuestsState(
 
-    // Por ahora hardcode.
-    // Esto nunca se hará así en el mundo real, es solo para fines educativos.
-    guests: [
-      Todo(id: uuid.v4(), description: RandomGenerator.getRandomName(), completedAt: null),
-      Todo(id: uuid.v4(), description: RandomGenerator.getRandomName(), completedAt: null),
-      Todo(id: uuid.v4(), description: RandomGenerator.getRandomName(), completedAt: DateTime.now()),
-      Todo(id: uuid.v4(), description: RandomGenerator.getRandomName(), completedAt: DateTime.now()),
-      Todo(id: uuid.v4(), description: RandomGenerator.getRandomName(), completedAt: null),
-    ]
-  )) {
+            // Por ahora hardcode.
+            // Esto nunca se hará así en el mundo real, es solo para fines educativos.
+            guests: [
+              Todo(
+                  id: uuid.v4(),
+                  description: RandomGenerator.getRandomName(),
+                  completedAt: null),
+              Todo(
+                  id: uuid.v4(),
+                  description: RandomGenerator.getRandomName(),
+                  completedAt: null),
+              Todo(
+                  id: uuid.v4(),
+                  description: RandomGenerator.getRandomName(),
+                  completedAt: DateTime.now()),
+              Todo(
+                  id: uuid.v4(),
+                  description: RandomGenerator.getRandomName(),
+                  completedAt: DateTime.now()),
+              Todo(
+                  id: uuid.v4(),
+                  description: RandomGenerator.getRandomName(),
+                  completedAt: null),
+            ])) {
     // Este on es el handler que va a estar escuchando eventos y decidiendo que
     // se tiene que hacer cuando llega uno (como cambia el estado).
     // emit() es lo que emite el nuevo estado (lo mismo que vismo en Cubit).
@@ -47,6 +62,8 @@ class GuestsBloc extends Bloc<GuestsEvent, GuestsState> {
 
     // Delegamos la lógica a la función _addGuestHandler()
     on<AddGuest>(_addGuestHandler);
+
+    on<ToggleGuest>(_toggleGuestHandler);
   }
 
   // Se pueden disparar (despachar) los eventos desde cualquier lado,
@@ -77,12 +94,30 @@ class GuestsBloc extends Bloc<GuestsEvent, GuestsState> {
     add(AddGuest(name));
   }
 
+  void toggleGuest(String id) {
+    add(ToggleGuest(id));
+  }
+
   // Delegamos aquí toda la lógica que tendría en on
   // Necesitamos el event y el emit.
   // Estos métodos se suelen hacer privados.
   void _addGuestHandler(AddGuest event, Emitter<GuestsState> emit) {
     final newGuest =
         Todo(id: uuid.v4(), description: event.name, completedAt: null);
-    emit(state.copyWith(guests: [...state.guests, newGuest]));    
+    emit(state.copyWith(guests: [...state.guests, newGuest]));
+  }
+
+  void _toggleGuestHandler(ToggleGuest event, Emitter<GuestsState> emit) {
+    final newGuests = state.guests.map((guest) {
+
+      if (guest.id == event.id) {
+        return guest.copyWith(
+          completedAt: guest.completedAt == null ? DateTime.now() : null);
+      }
+
+      return guest;
+    }).toList();
+
+    emit(state.copyWith(guests: newGuests));
   }
 }
