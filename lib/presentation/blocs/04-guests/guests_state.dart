@@ -13,8 +13,25 @@ class GuestsState extends Equatable {
 
   const GuestsState({
     this.filter = GuestFilter.all,
-    this.guests = const[],
+    this.guests = const [],
   });
+
+  int get howManyGuests => guests.length;
+
+  List<Todo> get filteredGuests {
+    switch (filter) {
+      case GuestFilter.invited:
+        return guests.where((guest) => guest.done).toList();
+      case GuestFilter.noInvited:
+        return guests.where((guest) => !guest.done).toList();
+      case GuestFilter.all:
+        return guests;
+      default:
+        throw Exception('Filter value not valid');
+    }
+  }
+
+  int get howManyFilteredGuests => filteredGuests.length;
 
   // Devuelve una nueva instancia de mi estado.
   GuestsState copyWith({

@@ -41,7 +41,8 @@ class _TodoView extends StatelessWidget {
           segments: const [
             ButtonSegment(value: GuestFilter.all, icon: Text('Todos')),
             ButtonSegment(value: GuestFilter.invited, icon: Text('Invitados')),
-            ButtonSegment(value: GuestFilter.noInvited, icon: Text('No invitados')),
+            ButtonSegment(
+                value: GuestFilter.noInvited, icon: Text('No invitados')),
           ],
           selected: <GuestFilter>{selectedFilter},
           onSelectionChanged: (value) {
@@ -54,10 +55,13 @@ class _TodoView extends StatelessWidget {
         /// Listado de personas a invitar
         Expanded(
           child: ListView.builder(
+            itemCount: guestBloc.state.howManyFilteredGuests,
             itemBuilder: (context, index) {
+              final guest = guestBloc.state.filteredGuests[index];
+
               return SwitchListTile(
-                  title: const Text('Juan carlos'),
-                  value: true,
+                  title: Text(guest.description),
+                  value: guest.done,
                   onChanged: (value) {});
             },
           ),

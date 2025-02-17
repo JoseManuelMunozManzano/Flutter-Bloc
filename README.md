@@ -174,3 +174,11 @@ Funcionamiento:
 - En el método `changeFilter(GuestFilter newFilter)` se añade, usando el método `add()` el evento asociado a ese filtro. Los eventos posibles están declarados en `guests_event.dart`
 - Basado en el método `add()` se ejecuta en `guests_bloc.dart` el método handler `on()` correspondiente, que acaba ejecutando el método `emit()` que emite el nuevo estado, es decir, llama al método `copyWith()` de `guests_state.dart`
 - Al cambiar el estado el widget se redibuja y muestra la nueva información basada en ese nuevo estado
+
+### Mostrar lista de invitados
+
+Modificamos `guests_bloc.dart` para mandar por ahora una lista hardcode de invitados.
+
+Modificamos `guests_state.dart` para crear un getter que nos dice cuántos invitados hay, otro getter que en función del filtro pedido, devuelve la lista filtrada y un último getter que nos dice, dado el filtro, cuántos invitados hay.
+
+Modificamos `guests_screen.dart` para mostrarlos.

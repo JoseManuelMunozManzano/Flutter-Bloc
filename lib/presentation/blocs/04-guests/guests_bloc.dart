@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:blocs_app/config/config.dart';
+import 'package:uuid/uuid.dart';
 
 import 'package:blocs_app/domain/domain.dart';
 import 'package:equatable/equatable.dart';
@@ -6,9 +8,22 @@ import 'package:equatable/equatable.dart';
 part 'guests_event.dart';
 part 'guests_state.dart';
 
+const uuid = Uuid();
+
 // El bloc amarra aquí las dos piezas (GuestsEvent y GuestsState)
 class GuestsBloc extends Bloc<GuestsEvent, GuestsState> {
-  GuestsBloc() : super(const GuestsState()) {
+  GuestsBloc() : super(GuestsState(
+
+    // Por ahora hardcode.
+    // Esto nunca se hará así en el mundo real, es solo para fines educativos.
+    guests: [
+      Todo(id: uuid.v4(), description: RandomGenerator.getRandomName(), completedAt: null),
+      Todo(id: uuid.v4(), description: RandomGenerator.getRandomName(), completedAt: null),
+      Todo(id: uuid.v4(), description: RandomGenerator.getRandomName(), completedAt: DateTime.now()),
+      Todo(id: uuid.v4(), description: RandomGenerator.getRandomName(), completedAt: DateTime.now()),
+      Todo(id: uuid.v4(), description: RandomGenerator.getRandomName(), completedAt: null),
+    ]
+  )) {
     // Este on es el handler que va a estar escuchando eventos y decidiendo que
     // se tiene que hacer cuando llega uno (como cambia el estado).
     // emit() es lo que emite el nuevo estado (lo mismo que vismo en Cubit).
