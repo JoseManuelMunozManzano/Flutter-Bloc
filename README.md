@@ -182,3 +182,17 @@ Modificamos `guests_bloc.dart` para mandar por ahora una lista hardcode de invit
 Modificamos `guests_state.dart` para crear un getter que nos dice cuántos invitados hay, otro getter que en función del filtro pedido, devuelve la lista filtrada y un último getter que nos dice, dado el filtro, cuántos invitados hay.
 
 Modificamos `guests_screen.dart` para mostrarlos.
+
+### Crear un nuevo invitado
+
+Para crear un nuevo invitado realizamos las siguientes modificaciones:
+
+- `guests_event.dart`: creamos un nuevo evento para recibir el nombre del invitado
+- `guests_bloc.dart`: creamos un handler para estar escuchando el nuevo evento creado y una función (`addGuest()`) para despachar el evento
+- `guests_screen.dart`: Llamamos a la función que despacha el evento en el onPressed del botón añadir invitado
+
+Maneras de optimizar esta implementación:
+
+- En la función `addGuest()` podríamos recibir todo el objeto Todo en vez de solo el nombre
+  - Esto podría tener un problema, que en la función `on` tengamos que tener lógica, cosa que se ve fea
+  - SOLUCION: delegar toda la lógica del `on` en un nuevo método, lo que deja el `on` muy limpio

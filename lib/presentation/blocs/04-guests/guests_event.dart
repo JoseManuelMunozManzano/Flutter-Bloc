@@ -10,8 +10,10 @@ sealed class GuestsEvent extends Equatable {
 
 // Para el botón Todos
 final class SetAllFilterEvent extends GuestsEvent {}
+
 // Para el botón Invitados
 final class SetInvitedFilterEvent extends GuestsEvent {}
+
 // Para el botón No Invitados
 final class SetNoInvitedFilterEvent extends GuestsEvent {}
 
@@ -20,4 +22,9 @@ final class SetCustomFilterEvent extends GuestsEvent {
   final GuestFilter newFilter;
 
   const SetCustomFilterEvent(this.newFilter);
+}
+
+final class AddGuest extends GuestsEvent {
+  final String name;
+  const AddGuest(this.name);
 }

@@ -44,6 +44,9 @@ class GuestsBloc extends Bloc<GuestsEvent, GuestsState> {
     on<SetCustomFilterEvent>((event, emit) {
       emit(state.copyWith(filter: event.newFilter));
     });
+
+    // Delegamos la lógica a la función _addGuestHandler()
+    on<AddGuest>(_addGuestHandler);
   }
 
   // Se pueden disparar (despachar) los eventos desde cualquier lado,
@@ -66,5 +69,20 @@ class GuestsBloc extends Bloc<GuestsEvent, GuestsState> {
 
     // En la vida real usamos la clase SetCustomFilterEvent() creada en guests_event.dart
     add(SetCustomFilterEvent(newFilter));
+  }
+
+  // Despachamos el evento
+  // Podríamos devolver el Todo, pero vamos a devolver void
+  void addGuest(String name) {
+    add(AddGuest(name));
+  }
+
+  // Delegamos aquí toda la lógica que tendría en on
+  // Necesitamos el event y el emit.
+  // Estos métodos se suelen hacer privados.
+  void _addGuestHandler(AddGuest event, Emitter<GuestsState> emit) {
+    final newGuest =
+        Todo(id: uuid.v4(), description: event.name, completedAt: null);
+    emit(state.copyWith(guests: [...state.guests, newGuest]));    
   }
 }
