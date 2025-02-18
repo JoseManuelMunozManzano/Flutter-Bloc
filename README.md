@@ -204,3 +204,11 @@ Para cambiar el estado de un invitado:
 - `guests_event.dart`: creamos un nuevo evento que recibe el id del invitado que quiero cambiar
 - `guests_bloc.dart`: creamos un handler para estar escuchando el nuevo evento creado, una función (`_toggleGuestHandler()`) que es el código delegado por el `on` y otra función (`addGuest()`) para despachar el evento
 - `guests_screen.dart`: Llamamos a la función que despacha el evento en el onChanged del SwitchListTile
+
+## Pokemon Screen - Preparación del ejercicio
+
+Transformamos `presentation/screens/05_pokemon/pokemon_screen.dart` en un Stateful Widget (pulsamod Ctrl+Shift+R sobre la palabra StatelessWidget y seleccionamos Convert to StatefulWidget).
+
+Esto lo hacemos porque queremos mantener un estado en el Widget, y con ese estado local, hacer modificaciones en nuestros blocs. Cada vez que hagamos un cambio en este state, nuestros blocs van a lanzar Futures (ver `pokemon_information.dart`).
+
+Para no perder el código anterior se crea la copia `pokemon_screen.copy.dart`.
