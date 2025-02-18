@@ -31,7 +31,7 @@ class PokemonState extends Equatable {
   );
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [pokemons];
 }
 
 // Esto no lo usamos. Usamos directamente la clase

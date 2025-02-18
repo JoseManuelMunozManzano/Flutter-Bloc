@@ -236,3 +236,15 @@ Por último, proveemos en `main.dart` ese Bloc a todo el árbol de Widgets. Ya p
 Hacemos un full restart de nuestra app.
 
 Y ya estamos listos para trabajar con nuestro bloc.
+
+### FetchPokemon desde el Bloc
+
+Vamos a trabajar con el mecanismo para obtener el nombre del Pokemon y así trabajar nuestro estado. Luego, vamos a hacer una inyección de dependencias para delegar la función de consulta del Pokemon para que lo pasen como un argumento al Bloc.
+
+Es decir, vamos a aprender a hacer inyección de dependencias y conectar blocs entre sí.
+
+Pero primero, vamos a hacerlo todo a la manera tradicional, sin nada de lo indicado arriba.
+
+Modificamos `pokemon_block.dart`.
+
+Modificamos `pokemon_screen.dart`. Usamos un `FutureBuilder` para trabajar con Futures ya que en nuestro bloc tenemos un Future.
