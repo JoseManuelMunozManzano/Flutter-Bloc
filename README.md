@@ -212,3 +212,27 @@ Transformamos `presentation/screens/05_pokemon/pokemon_screen.dart` en un Statef
 Esto lo hacemos porque queremos mantener un estado en el Widget, y con ese estado local, hacer modificaciones en nuestros blocs. Cada vez que hagamos un cambio en este state, nuestros blocs van a lanzar Futures (ver `pokemon_information.dart`).
 
 Para no perder el código anterior se crea la copia `pokemon_screen.copy.dart`.
+
+### PokemonBloc
+
+Nos creamos un nuevo Bloc.
+
+En la carpeta `blocs` hacemos click con el botón derecho del ratón. Del desplegable seleccionamos `Bloc: New Bloc`. Como nombre indicamos `pokemon`.
+
+Nos crea la carpeta `blocs`, que renombramos a `05-pokemon`.
+
+Vemos que también nos ha creado los siguientes archivos:
+
+- pokemon_bloc.dart
+- pokemon_state.dart
+- pokemon_event.dart
+
+Empezamos modificando `pokemon_state.dart`, luego `pokemon_event.dart` y por último modificamos `pokemon_bloc.dart`.
+
+Añadimos en `service_locator.dart` nuestro nuevo `PokemonBloc`.
+
+Por último, proveemos en `main.dart` ese Bloc a todo el árbol de Widgets. Ya puede ser consumido.
+
+Hacemos un full restart de nuestra app.
+
+Y ya estamos listos para trabajar con nuestro bloc.
