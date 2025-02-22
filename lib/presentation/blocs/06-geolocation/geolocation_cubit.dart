@@ -5,11 +5,13 @@ import 'package:geolocator/geolocator.dart';
 part 'geolocation_state.dart';
 
 class GeolocationCubit extends Cubit<GeolocationState> {
-  // Mediante inyección de dependencias y método asíncronos
-  // podríamos mandar de antemano el estado.
-  // Como son ejemplos, los valores se inicializan directamente
-  // en el constructor de GeolocationState().
-  GeolocationCubit() : super(const GeolocationState());
+  // Inyectamos una dependencia opcional, porque puede que la manden o no.
+  // Vamos a llamar al método creado en historic_location_bloc.dart
+  final void Function((double lat, double lng) location)? onNewUserLocationCallback;
+
+  GeolocationCubit({
+    this.onNewUserLocationCallback,
+  }) : super(const GeolocationState());
 
   Future<void> checkStatus() async {
     final serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -42,10 +44,13 @@ class GeolocationCubit extends Cubit<GeolocationState> {
     // Emitimos la última ubicación conocida.
     Geolocator.getPositionStream(locationSettings: locationSettings)
     .listen((position) {
-      // TODO: Aquí ya sabemos la ubicación del usuario.
       final newLocation = (position.latitude, position.longitude);
       emit(state.copyWith(location: newLocation));
       // print(newLocation);
+
+      // Mandamos llamar al método del otro bloc (historic_location_bloc.dart)
+      // si existe (de ahí el ?  y el .call)
+      onNewUserLocationCallback?.call(newLocation);
     });
   }
 }

@@ -311,3 +311,19 @@ Vemos que también nos ha creado los siguientes archivos, ordenados desde el pri
 En `service_locator.dart` creamos nuestro nuevo getIt.
 
 En `main.dart` añadimos el BlocProvider.
+
+### Comunicación entre Blocs
+
+En este enlace se indica como hacer la comunicación bloc a bloc: `https://bloclibrary.dev/architecture/#bloc-to-bloc-communication`.
+
+Queremos insertar en `historic_location_state.dart` todas las localizaciones de `geolocation_state.dart`. Para ello, necesitamos comunicar estos dos blocs.
+
+Podríamos inyectar el bloc de geolocation en historic. Pero no es necesario mandar todo el bloc (en este ejemplo al menos, cada caso es diferente).
+
+Lo que vamos a hacer es hacer que geolocation, si cambia, notifique a historic de alguna manera. En concreto, lanzando un evento.
+
+Para evitar el acoplamiento entre blocs vamos a crear en `historic_location_bloc.dart` un método que vamos a terminar exponiendo.
+
+Modificamos también `geolocation_cubit.dart` para inyectar una dependencia. Esta dependencia es el método que hemos creado en `historic_location_bloc.dart`. Llamamos a ese método cuando tenemos un nuevo valor de localización.
+
+En nuestro `service_locator.dart` tenemos que pasar este método a `GeolocationCubit()`.

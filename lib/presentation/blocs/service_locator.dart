@@ -19,11 +19,28 @@ void serviceLocatorInit() {
   // Inyectando una dependencia.
   getIt.registerSingleton(PokemonBloc(fetchPokemon: PokemonInformation.getPokemonName));
 
+  // Lo ponemos antes de GeolocationCubit porque este necesita un método que tenemos aquí.
+  // Por tanto, tiene que existir la instancia.
+  //
+  // Formas de pasar el método al otro bloc
+  // 1. Tomamos la referencia.
+  //final historicBloc = getIt.registerSingleton(HistoricLocationBloc());
+  //
+  // 2. Aquí no se hace nada
+  getIt.registerSingleton(HistoricLocationBloc());
+
   // Operador de cascada.
   // Una vez creada la instancia, empiezo a emitir cambios en la localización del usuario.
-  getIt.registerSingleton(GeolocationCubit()..watchUserLocation());
+  getIt.registerSingleton(
+    GeolocationCubit(
+      // 1. Obtiene el método del otro bloc dada su referencia
+      // onNewUserLocationCallback: historicBloc.onNewUserLocation,
+      //
+      // 2. Usamos el mismo getIt para obtener la referencia al otro bloc y a su método.
+      onNewUserLocationCallback: getIt<HistoricLocationBloc>().onNewUserLocation,
+    )
+      ..watchUserLocation());
 
-  getIt.registerSingleton(HistoricLocationBloc());
 
   // ¿Para qué vale esto?
   // Imaginemos que necesitamos pasar a TheneCubit el valor del estado de UsernameCubit
