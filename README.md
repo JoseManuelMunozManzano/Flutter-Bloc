@@ -327,3 +327,9 @@ Para evitar el acoplamiento entre blocs vamos a crear en `historic_location_bloc
 Modificamos también `geolocation_cubit.dart` para inyectar una dependencia. Esta dependencia es el método que hemos creado en `historic_location_bloc.dart`. Llamamos a ese método cuando tenemos un nuevo valor de localización.
 
 En nuestro `service_locator.dart` tenemos que pasar este método a `GeolocationCubit()`.
+
+### Mostrar listado de ubicaciones
+
+Creamos un getter en `historic_location_state.dart` para saber cuántos puntos tengo insertados en nuestro listado de ubicaciones.
+
+Modificamos `screens/06-blocs_with_blocs/blocs_with_blocs_screen.dart`.
