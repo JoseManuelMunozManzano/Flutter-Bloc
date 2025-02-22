@@ -279,3 +279,9 @@ De nuevo, un Cubit es un Bloc sin eventos.
 En `service_locator.dart` creamos nuestro nuevo getIt.
 
 En `main.dart` añadimos el BlocProvider.
+
+### Colocar simuladores en movimiento
+
+En `Ios`, del menú del Simulador seleccionamos `Features > Location > Freeway Drive`. Con esto conseguimos que en los mapas el simulador mueva el punto azul por una carretera, simulando un recorrido.
+
+En `Android`, seleccionar del menú lateral al simulador los tres puntos y del nuevo menú seleccionar `Location`. Seleccionamos la pestaña `Routes` y escribimos, por ejemplo, `Golden Gate`. Para hacer una ruta tocamos el botón indicando el origen y escribimos `Facebook Headquarters`. Pulsamos en `Save Route` e indicamos un nombre cualquiera. Abajo, indicamos una velocidad `Speed 4X` y seleccionamos `Repeat playback`, y por ultimo, pulsamos `Play Route`. Con esto se mueven las coordenadas de Geolocation.
