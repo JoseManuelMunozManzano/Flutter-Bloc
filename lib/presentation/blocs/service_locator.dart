@@ -8,6 +8,7 @@ GetIt getIt = GetIt.instance;
 void serviceLocatorInit() {
   // Creamos las instancias de nuestros Cubits, en este caso como Singleton.
   // Son los Cubit que tenemos en main_copy.dart, en la clase BlocsProviders.
+  // Si es necesario, podemos crear Singletons de manera Lazy.
   getIt.registerSingleton(UsernameCubit());
   getIt.registerSingleton(RouterSimpleCubit());
   getIt.registerSingleton(CounterCubit());
@@ -17,6 +18,8 @@ void serviceLocatorInit() {
 
   // Inyectando una dependencia.
   getIt.registerSingleton(PokemonBloc(fetchPokemon: PokemonInformation.getPokemonName));
+
+  getIt.registerSingleton(GeolocationCubit());
 
   // ¿Para qué vale esto?
   // Imaginemos que necesitamos pasar a TheneCubit el valor del estado de UsernameCubit

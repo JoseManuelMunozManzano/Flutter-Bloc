@@ -258,3 +258,24 @@ La inyección de dependencias no es más que mandar funciones o argumentos como 
 Vamos a inyectar la dependencia que nosotros usamos para obtener la información del Pokemon, la función `PokemonInformation.getPokemonName()`, situado en `pokemon_bloc.dart`. El día de mañana podré cambiar esa función por otra que, si cumple la firma que el Bloc espera, será transparente.
 
 Una vez hecha inyección de dependencias en `pokemon_bloc.dart`, veremos que falla `service_locator.dart`. Esto es porque es obligatorio proveer la función que se espera, en este caso el nombre es `fetchPokemon` y se le asigna `PokemonInformation.getPokemonName`. Notar que no hay paréntesis. Esto es porque solo se manda la referencia a la función (no quiero ejecutarla ahí).
+
+## Comunicación entre BLoCs - Geolocation
+
+Vamos a hacer un Cubit que se va a comunicar con un BLoC. Para ello:
+
+En la carpeta `blocs` hacemos click con el botón derecho del ratón. Del desplegable seleccionamos `Bloc: New Cubit`. Indicamos el nombre `geolocation`. Renombramos la carpeta `cubit` recien creada a `06-geolocation`.
+
+Dentro de esta carpeta vemos que hay dos archivos:
+
+- geolocation_cubit.dart
+- geolocation_state.dart
+
+Modificamos `geolocation_state.dart` para crear el estado que necesitamos.
+
+Modificamos `geolocation_cubit.dart` para indica la forma en la que queremos que la información fluya.
+
+De nuevo, un Cubit es un Bloc sin eventos.
+
+En `service_locator.dart` creamos nuestro nuevo getIt.
+
+En `main.dart` añadimos el BlocProvider.
