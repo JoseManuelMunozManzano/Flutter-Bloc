@@ -23,6 +23,8 @@ void serviceLocatorInit() {
   // Una vez creada la instancia, empiezo a emitir cambios en la localización del usuario.
   getIt.registerSingleton(GeolocationCubit()..watchUserLocation());
 
+  getIt.registerSingleton(HistoricLocationBloc());
+
   // ¿Para qué vale esto?
   // Imaginemos que necesitamos pasar a TheneCubit el valor del estado de UsernameCubit
   // Lo haríamos en el método así:

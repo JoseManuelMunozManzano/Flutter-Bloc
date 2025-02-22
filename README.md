@@ -132,7 +132,7 @@ Ahora si que vamos a usar BLoC en toda su complejidad, es decir (BLoC, estado y 
 
 En VSCode, nos posicionamos en la carpeta `blocs`, pulsamos el botón derecho del ratón y seleccionamos `Bloc: New Bloc` y le damos el nombre `guests`.
 
-Nos crea la carpeta `blocs`, que renombramos a `04-guests`.
+Nos crea la carpeta `bloc`, que renombramos a `04-guests`.
 
 Vemos que también nos ha creado los siguientes archivos:
 
@@ -219,7 +219,7 @@ Nos creamos un nuevo Bloc.
 
 En la carpeta `blocs` hacemos click con el botón derecho del ratón. Del desplegable seleccionamos `Bloc: New Bloc`. Como nombre indicamos `pokemon`.
 
-Nos crea la carpeta `blocs`, que renombramos a `05-pokemon`.
+Nos crea la carpeta `bloc`, que renombramos a `05-pokemon`.
 
 Vemos que también nos ha creado los siguientes archivos:
 
@@ -293,3 +293,21 @@ Modificamos `geolocation_cubit.dart` para implementar las funciones que ya habí
 También modificamos `service_locator.dart` porque queremos que, tan pronto el bloc se define, vamos a empezar a escuchar los cambios en la localización.
 
 Enseñamos las localizaciones en `screens/06-blocs_with_blocs/blocs_with_blocs_screen.dart`.
+
+### Historic Location Bloc
+
+Vamos a crear un Bloc.
+
+En VSCode, nos posicionamos en la carpeta `blocs`, pulsamos el botón derecho del ratón y seleccionamos `Bloc: New Bloc` y le damos el nombre `historic_location`.
+
+Nos crea la carpeta `bloc`, que renombramos a `07-historic_location`.
+
+Vemos que también nos ha creado los siguientes archivos, ordenados desde el primero que modifico al último:
+
+- historic_location_state.dart: como quiero que fluya mi información
+- historic_location_event.dart: son formas estandarizadas en las que cambiamos el estado. En vez de cambiar el estado en el Bloc directamente, generamos un evento que va a ser recibido por el archivo historic_location_bloc, y este, basado en el nuevo evento, genera un nuevo estado
+- historic_location_bloc.dart: donde escuchamos los eventos
+
+En `service_locator.dart` creamos nuestro nuevo getIt.
+
+En `main.dart` añadimos el BlocProvider.
