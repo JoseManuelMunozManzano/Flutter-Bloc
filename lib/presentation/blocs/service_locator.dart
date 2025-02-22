@@ -19,7 +19,9 @@ void serviceLocatorInit() {
   // Inyectando una dependencia.
   getIt.registerSingleton(PokemonBloc(fetchPokemon: PokemonInformation.getPokemonName));
 
-  getIt.registerSingleton(GeolocationCubit());
+  // Operador de cascada.
+  // Una vez creada la instancia, empiezo a emitir cambios en la localización del usuario.
+  getIt.registerSingleton(GeolocationCubit()..watchUserLocation());
 
   // ¿Para qué vale esto?
   // Imaginemos que necesitamos pasar a TheneCubit el valor del estado de UsernameCubit
