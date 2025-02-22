@@ -333,3 +333,7 @@ En nuestro `service_locator.dart` tenemos que pasar este método a `GeolocationC
 Creamos un getter en `historic_location_state.dart` para saber cuántos puntos tengo insertados en nuestro listado de ubicaciones.
 
 Modificamos `screens/06-blocs_with_blocs/blocs_with_blocs_screen.dart`.
+
+## Inconvenientes de Bloc
+
+Está pensado para trabajar con una instancia de un Bloc. Se puede crear más de una instancia, por ejemplo usando getIt para tener instancia 1 e instancia 2, o duplicar el state para tenerlo dos veces... El caso es que hay que pensar porque no es tan fácil. 
