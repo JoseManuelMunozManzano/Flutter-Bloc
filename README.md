@@ -248,3 +248,13 @@ Pero primero, vamos a hacerlo todo a la manera tradicional, sin nada de lo indic
 Modificamos `pokemon_block.dart`.
 
 Modificamos `pokemon_screen.dart`. Usamos un `FutureBuilder` para trabajar con Futures ya que en nuestro bloc tenemos un Future.
+
+### Inyección de dependencias
+
+La inyección de dependencias no es más que mandar funciones o argumentos como parámetros a los constructores de nuestros BLoCs.
+
+¿Por qué queremos hacer inyección de dependencias? Para hacer código mantenible a futuro y para poder comunicar Blocs entre si sin que cambios en un Bloc afecten a otros.
+
+Vamos a inyectar la dependencia que nosotros usamos para obtener la información del Pokemon, la función `PokemonInformation.getPokemonName()`, situado en `pokemon_bloc.dart`. El día de mañana podré cambiar esa función por otra que, si cumple la firma que el Bloc espera, será transparente.
+
+Una vez hecha inyección de dependencias en `pokemon_bloc.dart`, veremos que falla `service_locator.dart`. Esto es porque es obligatorio proveer la función que se espera, en este caso el nombre es `fetchPokemon` y se le asigna `PokemonInformation.getPokemonName`. Notar que no hay paréntesis. Esto es porque solo se manda la referencia a la función (no quiero ejecutarla ahí).

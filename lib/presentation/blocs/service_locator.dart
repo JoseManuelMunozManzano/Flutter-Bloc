@@ -14,7 +14,9 @@ void serviceLocatorInit() {
   getIt.registerSingleton(ThemeCubit());
 
   getIt.registerSingleton(GuestsBloc());
-  getIt.registerSingleton(PokemonBloc());
+
+  // Inyectando una dependencia.
+  getIt.registerSingleton(PokemonBloc(fetchPokemon: PokemonInformation.getPokemonName));
 
   // ¿Para qué vale esto?
   // Imaginemos que necesitamos pasar a TheneCubit el valor del estado de UsernameCubit

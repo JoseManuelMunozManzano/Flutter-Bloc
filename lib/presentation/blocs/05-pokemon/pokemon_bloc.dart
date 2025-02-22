@@ -1,12 +1,20 @@
 import 'package:bloc/bloc.dart';
-import 'package:blocs_app/config/config.dart';
 import 'package:equatable/equatable.dart';
 
 part 'pokemon_event.dart';
 part 'pokemon_state.dart';
 
 class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
-  PokemonBloc() : super(const PokemonState()) {
+  // Para hacer la inyección de dependencias.
+  // Esta propiedad privada es una función que voy a llamar.
+  final Future<String> Function(int id) _fetchPokemon;
+
+  // Recibimos como argumento una función que asignamos
+  // a nuestra propiedad privada.
+  PokemonBloc({
+    required Future<String> Function(int id) fetchPokemon
+  }) : _fetchPokemon = fetchPokemon,
+  super(const PokemonState()) {
     on<PokemonAdded>((event, emit) {
       // Me creo un nuevo mapa basado en el state actual.
       // Esto lo hago porque el state es inmutable.
@@ -25,14 +33,16 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
   }
 
   Future<String> fetchPokemonName(int id) async {
-
     // Uso del caching
     if (state.pokemons.containsKey(id)) {
       return state.pokemons[id]!;
     }
 
     try {
-      final pokemonName = await PokemonInformation.getPokemonName(id);
+      // Para inyectar la dependencia quitamos la referencia directa a la función.
+      //final pokemonName = await PokemonInformation.getPokemonName(id);
+      // Y mandamos a llamar la función inyectada en el constructor.
+      final pokemonName = await _fetchPokemon(id);
       add(PokemonAdded(id, pokemonName));
       return pokemonName;
     } catch (e) {
